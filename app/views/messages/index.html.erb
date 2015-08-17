@@ -1,6 +1,5 @@
 <h1>Messages#index</h1>
 
-
 <%= search_form_for(@q, :html => {:class => 'form'}) do |f| %>
   <%= f.label :body_cont, "Search contents" %>
   <%= f.search_field :body_cont, :class => 'validate[required]' %>
@@ -9,7 +8,7 @@
 <% end %>
 
 <br>
-<%= paginate(@messages) %>
+  <%= paginate(@messages) %>
 <br>
 
 <% @messages.each do |msg| %>
@@ -19,18 +18,18 @@
   
   <em>posted by 
     <strong>
-    <% if msg.user.try(:username).blank? %>
-      Guest
-    <% else %>
-      <%= msg.user.username %>
-    <% end %>
+      <% if msg.user.try(:username).blank? %>
+        Guest
+      <% else %>
+        <%= msg.user.username %>
+      <% end %>
     </strong>
   </em>
   
   <br><br>
   
   <% if msg.reply_id.present? %>
-    >><%= msg.reply_id %>
+    <a href="/messages/<%= msg.reply_id %>">>><%= msg.reply_id %></a>
     <br>
   <% end %>
   

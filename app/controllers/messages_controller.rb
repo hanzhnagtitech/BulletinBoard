@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
   end
   
   def show
-    @message = Message.where(:id => params[:id])
+    @message = Message.where(:id => params[:id]).first
   end
   
   def edit

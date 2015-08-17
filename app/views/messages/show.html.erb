@@ -1,0 +1,38 @@
+<h1>Messages#show</h1>
+
+<% if @message %>
+  <strong><%= @message.id %>: <%= @message.title %></strong>
+  
+  <br>
+  
+  <em>posted by 
+    <strong>
+      <% if @message.user.try(:username).blank? %>
+        Guest
+      <% else %>
+        <%= @message.user.username %>
+      <% end %>
+    </strong>
+  </em>
+  
+  <br><br>
+  
+  <% if @message.reply_id.present? %>
+    <a href="/messages/<%= @message.reply_id %>">>><%= @message.reply_id %></a>
+    <br>
+  <% end %>
+  
+  <%= simple_format(@message.body) %>
+  <br>
+  
+  <%= link_to "Reply", :controller => :messages, :action => :reply, :id => @message.id %>
+  
+  <% if @message.user.try(:username).present? %>  
+    <% if current_user.try(:id) == @message.user.try(:id) %>
+       | <%= link_to "Edit post",  edit_message_path(@message.id) %> | 
+      <%= link_to "Delete post", @message, method: :delete, data: {confirm: "Are you sure?"} %>
+    <% end %>
+  <% end %>
+<% else %>
+<p>This post was deleted</p>
+<% end %>
