@@ -1,0 +1,34 @@
+<h1>Messages#reply</h1>
+
+<%= form_for(@message, :html => {:class => 'form'}, :url => {:controller => :messages, :action => :confirm}) do |f| %>
+  <%= f.hidden_field :reply_id %>
+  <% if @message.errors.any? %>
+    <% @message.errors.full_messages.each do |err| %>
+      <font color="red"><%= err %></font><br>
+    <% end %>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, :class => 'validate[required]' %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  
+  <% if false %>
+    <div class="field">
+      <%= image_tag @message.image.url if @message.image.present? %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+  <% end %>
+  
+  <div class="actions">
+    <%= f.submit "Next" %>
+  </div>
+<% end %>
+
+<br>
+<%= link_to 'Back', :back %>

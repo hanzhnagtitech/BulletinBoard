@@ -1,0 +1,59 @@
+<h1>Messages#index</h1>
+
+
+<%= search_form_for(@q, :html => {:class => 'form'}) do |f| %>
+  <%= f.label :body_cont, "Search contents" %>
+  <%= f.search_field :body_cont, :class => 'validate[required]' %>
+  <%= f.submit %>
+  <br>
+<% end %>
+
+<br>
+<%= paginate(@messages) %>
+<br>
+
+<% @messages.each do |msg| %>
+  <strong><%= msg.id %>: <%= msg.title %></strong>
+  
+  <br>
+  
+  <em>posted by 
+    <strong>
+    <% if msg.user.try(:username).blank? %>
+      Guest
+    <% else %>
+      <%= msg.user.username %>
+    <% end %>
+    </strong>
+  </em>
+  
+  <br><br>
+  
+  <% if msg.reply_id.present? %>
+    >><%= msg.reply_id %>
+    <br>
+  <% end %>
+  
+  <%= simple_format(msg.body) %>
+  <br>
+  
+  <% if false %>
+    <% if msg.image.present? %>
+      <%= image_tag msg.image %>
+    <% end %>
+    <br>
+  <% end %>
+  
+  <%= link_to "Reply", :controller => :messages, :action => :reply, :id => msg.id %>
+  
+  <% if msg.user.try(:username).present? %>  
+    <% if current_user.try(:id) == msg.user.try(:id) %>
+       | <%= link_to "Edit post",  edit_message_path(msg.id) %> | 
+      <%= link_to "Delete post", msg, method: :delete, data: {confirm: "Are you sure?"} %>
+    <% end %>
+  <% end %>
+  
+  <br>
+  <hr>
+<% end %>
+<%= paginate(@messages) %>

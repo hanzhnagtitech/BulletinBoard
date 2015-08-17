@@ -1,0 +1,41 @@
+<h1>Messages#confirm</h1>
+
+<%= form_for(@message, :url => {:controller => :messages, :action => :create}) do |f| %>
+  <%= f.hidden_field :reply_id %>
+  <table class="table">
+    <tr>
+      <th>title</th>
+      <td>
+        <%= f.hidden_field :title %>
+        <%= @message.title %>
+      </td>
+    </tr>
+    <tr>
+      <th>contents</th>
+      <td>
+        <%= f.hidden_field :body %>
+        <%= simple_format(@message.body) %>
+      </td>
+    </tr>
+    
+    <% if false %>
+      <% if @message.image.present? %>
+        <tr>
+          <th>image</th>
+          <td>
+            <%= f.hidden_field :image_cache %>
+            <%= image_tag @message.image.url %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+  </table>
+  
+  <div class="actions">
+    <%= f.submit 'Post' %>
+  </div>
+<% end %>
+
+<br>
+<%= link_to 'Back', :back %>

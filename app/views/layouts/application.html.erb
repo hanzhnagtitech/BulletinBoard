@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>App</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application','data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header>
+  <nav>
+    <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.username %></strong> (<%= current_user.email %>) 
+      <%= link_to "Top", root_path %> |
+      <%= link_to "Post", new_message_path %> |
+      <%= link_to "Profile", edit_user_registration_path %> |
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      
+    <% else %>
+      <%= link_to "Top", root_path %> |
+      <%= link_to "Post", new_message_path %> |
+      <%= link_to "Sign up", new_user_registration_path %> |
+      <%= link_to "Log in", new_user_session_path %>
+    <% end %>
+  </nav>
+</header>
+
+<p class="notice"><font color="red"><%= notice %></font></p>
+<p class="alert"><font color="red"><%= alert %></font></p>
+<%= yield %>
+
+<%= javascript_include_tag 'jquery.validationEngine', 'jquery.validationEngine-en' %>
+<%= stylesheet_link_tag    'validationEngine.jquery' %>
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+     jQuery(".form").validationEngine();
+  });
+</script>
+
+</script>
+</body>
+</html>
