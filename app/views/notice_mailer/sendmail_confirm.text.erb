@@ -1,5 +1,11 @@
 Hi, <%= @to_mail_user.username %>.
-You received a reply from <%= @message.user.username %>.
+
+You received a reply from 
+<% if @message.user %>
+  <%= @message.user.username %>.
+<% else %>
+  Guest User.
+<% end %>
 
 Title:
 <%= @message.title %>
