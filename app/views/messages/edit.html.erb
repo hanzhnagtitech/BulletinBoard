@@ -16,14 +16,6 @@
     <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div>
-  
-  <% if false %>
-    <div class="field">
-      <%= image_tag @message.image.url if @message.image.present? %>
-      <%= f.file_field :image %>
-      <%= f.hidden_field :image_cache %>
-    </div>
-  <% end %>
     
   <div class="actions">
     <%= f.submit "Update" %>

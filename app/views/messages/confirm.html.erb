@@ -17,19 +17,6 @@
         <%= simple_format(@message.body) %>
       </td>
     </tr>
-    
-    <% if false %>
-      <% if @message.image.present? %>
-        <tr>
-          <th>image</th>
-          <td>
-            <%= f.hidden_field :image_cache %>
-            <%= image_tag @message.image.url %>
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
-    
   </table>
   
   <div class="actions">

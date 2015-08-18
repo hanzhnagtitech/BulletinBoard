@@ -36,13 +36,6 @@
   <%= simple_format(msg.body) %>
   <br>
   
-  <% if false %>
-    <% if msg.image.present? %>
-      <%= image_tag msg.image %>
-    <% end %>
-    <br>
-  <% end %>
-  
   <%= link_to "Reply", :controller => :messages, :action => :reply, :id => msg.id %>
   
   <% if msg.user.try(:username).present? %>  

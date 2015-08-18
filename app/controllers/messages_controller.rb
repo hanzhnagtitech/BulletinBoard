@@ -73,6 +73,6 @@ class MessagesController < ApplicationController
 
   private
     def message_params
-      params.require(:message).permit(:reply_id, :title, :body, :image, :image_cache)
+      params.require(:message).permit(:reply_id, :title, :body)
     end
 end
