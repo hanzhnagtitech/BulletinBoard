@@ -50,6 +50,8 @@ group :development, :test do
   gem 'test-unit'
   gem "rspec"
   gem "rspec-rails"
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 gem 'devise'
