@@ -64,7 +64,6 @@ class MessagesController < ApplicationController
     end
   end
   
-  
   def reply
     @message = Message.new
     @message.user = current_user
